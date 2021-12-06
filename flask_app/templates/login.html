@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-4">
+            <div class="col-1"></div>
+            <div class="col-4 bg-dark text-white p-3">
+                <div class="row px-3">
+                    <h2 class='text-primary'>Register</h2>
+                </div>
+                <div class="row mx-4 font-">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message not in login_errors %}
+                                <p class='mb-1 text-danger'><em>{{ message }} </em></p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="/register" method='POST'>
+                    <div class="form-group m-3">
+                        <label for="first_name">First name: </label>
+                        <input type="text" name='first_name' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <label for="last_name">Last name: </label>
+                        <input type="text" name='last_name' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <label for="email">Email: </label>
+                        <input type="text" name='email' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <label for="password">Password: </label>
+                        <input type="password" name='password' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <label for="confirm_password">Confirm password: </label>
+                        <input type="password" name='confirm_password' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <button type='submit' class='btn btn-primary mt-2'>Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-4 bg-dark text-white p-3">
+                <div class="row px-3">
+                    <h2 class='text-success'>Login</h2>
+                </div>
+                <div class="row mx-4 font-">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if message in login_errors %}
+                                <p class='mb-1 text-danger'><em>{{ message }} </em></p>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <form action="/login/user" method='POST'>
+                    <div class="form-group m-3">
+                        <label for="email">Email: </label>
+                        <input type="text" name='email' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <label for="password">Password: </label>
+                        <input type="password" name='password' class='form-control'>
+                    </div>
+                    <div class="form-group m-3">
+                        <button type='submit' class='btn btn-success mt-2'>Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+</body>
+</html>
